@@ -12,7 +12,7 @@ export default class Start extends Component {
   constructor() {
     super();
     this.state = {
-      messages: [],
+      messages: [], //array of messages to be stored
     };
   }
   componentDidMount() {
@@ -20,7 +20,7 @@ export default class Start extends Component {
       messages: [
         {
           _id: 1,
-          text: "Hello developer",
+          text: "Hello " + this.props.route.params.name, //System message says Hello + user's name
           createdAt: new Date(),
           user: {
             _id: 2,
@@ -36,12 +36,12 @@ export default class Start extends Component {
         },
       ],
     });
-    this.props.navigation.setOptions({ title: this.props.route.params.name });
+    this.props.navigation.setOptions({ title: this.props.route.params.name }); //sets name at top of navigation
   }
 
   onSend(messages = []) {
     this.setState((oldState) => ({
-      messages: GiftedChat.append(oldState.messages, messages),
+      messages: GiftedChat.append(oldState.messages, messages), //adds old messages to array of messages
     }));
   }
 
@@ -51,6 +51,7 @@ export default class Start extends Component {
         {...props}
         wrapperStyle={{
           right: {
+            //styling for user bubble
             backgroundColor: "#9F2B68",
             padding: 5,
             borderTopRightRadius: 10,
@@ -59,8 +60,17 @@ export default class Start extends Component {
             borderBottomRightRadius: 10,
           },
           left: {
+            //styling for the other person's bubble
             backgroundColor: "lightblue",
             padding: 5,
+          },
+        }}
+        textStyle={{
+          right: {
+            fontSize: 19,
+          },
+          left: {
+            fontSize: 19,
           },
         }}
       />
@@ -73,7 +83,7 @@ export default class Start extends Component {
       <View
         style={{
           flex: 1,
-          backgroundColor: bckClr,
+          backgroundColor: bckClr, //sets background color from props
         }}
       >
         <GiftedChat

@@ -31,6 +31,7 @@ export default class Start extends Component {
     };
   }
 
+  //toggle background color that's to be sent to Chat
   changeBackgroundColor = (newClr) => {
     this.setState({ bckClr: newClr });
   };
@@ -106,6 +107,7 @@ export default class Start extends Component {
     }
   };
 
+  //handles navigating to the Chat screen
   startChat = () => {
     this.props.navigation.navigate("Chat", {
       name: this.state.name,
@@ -128,7 +130,10 @@ export default class Start extends Component {
             <TextInput
               style={styles.nameInput}
               placeholder="Your name "
-              onChangeText={(newName) => this.setState({ name: newName })}
+              onChangeText={(newName) => this.setState({ name: newName })} //updates state of name based on user-input
+              ccessible={true}
+              accessibilityLabel="Your Name"
+              accessibilityHint="Type the name you wish to use during the chat session."
             />
             <Text style={styles.backgroundTitle}>Choose Background Color:</Text>
             <View
@@ -140,8 +145,12 @@ export default class Start extends Component {
             >
               <Pressable
                 onPress={() => {
-                  this.changeBorder1("red");
+                  this.changeBorder1("red"); //changes border color of button pressed
                 }}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="Black Background Color"
+                accessibilityHint="Changes the background of the chat screen to black. Double tap to activate"
               >
                 <Text
                   style={{
@@ -156,8 +165,12 @@ export default class Start extends Component {
               </Pressable>
               <Pressable
                 onPress={() => {
-                  this.changeBorder2("red");
+                  this.changeBorder2("red"); //changes border color of button pressed
                 }}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="Dark Blue Background Color"
+                accessibilityHint="Changes the background of the chat screen to dark blue. Double tap to activate"
               >
                 <Text
                   style={{
@@ -170,7 +183,15 @@ export default class Start extends Component {
                   }}
                 ></Text>
               </Pressable>
-              <Pressable onPress={() => this.changeBorder3("red")}>
+              <Pressable
+                onPress={() => {
+                  this.changeBorder3("red"); //changes border color of button pressed
+                }}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="Light Blue Background Color"
+                accessibilityHint="Changes the background of the chat screen to light blue. Double tap to activate"
+              >
                 <Text
                   style={{
                     backgroundColor: "#8A95A5",
@@ -182,7 +203,15 @@ export default class Start extends Component {
                   }}
                 ></Text>
               </Pressable>
-              <Pressable onPress={() => this.changeBorder4("red")}>
+              <Pressable
+                onPress={() => {
+                  this.changeBorder4("red"); //changes border color of button pressed
+                }}
+                accessible={true}
+                accessibilityRole="button"
+                accessibilityLabel="Light Green Background Color"
+                accessibilityHint="Changes the background of the chat screen to light green. Double tap to activate"
+              >
                 <Text
                   style={{
                     backgroundColor: "#B9C6AE",
