@@ -7,7 +7,8 @@ import {
   Button,
   Pressable,
   ImageBackground,
-  Image,
+  TouchableOpacity,
+  TouchableHighlight,
 } from "react-native";
 
 import BackgroundImage from "../assets/BackgroundImage.png";
@@ -186,7 +187,7 @@ export default class Start extends Component {
                 ></Text>
               </Pressable>
             </View>
-            <Pressable
+            <TouchableHighlight
               style={styles.chatBtn}
               onPress={() => {
                 this.props.navigation.navigate("Chat", {
@@ -196,7 +197,7 @@ export default class Start extends Component {
               }}
             >
               <Text style={styles.chatTxt}>Start Chatting</Text>
-            </Pressable>
+            </TouchableHighlight>
             <View>
               <Pressable>
                 <Text></Text>
