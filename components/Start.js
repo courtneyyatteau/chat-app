@@ -16,9 +16,9 @@ export default class Start extends Component {
   constructor() {
     super();
     this.state = {
-      name: "",
-      bckClr: "",
-      borderRadius: "",
+      name: " ",
+      bckClr: "white",
+      borderRadius: 25,
       pressed: false,
       pressed2: false,
       pressed3: false,
