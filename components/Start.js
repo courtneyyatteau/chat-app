@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
+import { GiftedChat } from "react-native-gifted-chat";
 
 import BackgroundImage from "../assets/BackgroundImage.png";
 
@@ -35,6 +36,7 @@ export default class Start extends Component {
     this.setState({ bckClr: newClr });
   };
 
+  //border touch toggling for each background button
   changeBorder1 = (newBorder) => {
     if (!this.state.pressed) {
       this.setState({ pressed: true });
@@ -250,7 +252,7 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
     paddingBottom: "5%",
     paddingRight: "5%",
-    marginBottom: 10
+    marginBottom: 10,
   },
   backgroundTitle: {
     fontSize: 16,
