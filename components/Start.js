@@ -37,7 +37,11 @@ export default class Start extends Component {
             <Text style={styles.title}>Chat App</Text>
           </View>
           <View style={styles.lowerbox}>
-            <TextInput style={styles.nameInput} placeholder="Your name " />
+            <TextInput
+              style={styles.nameInput}
+              placeholder="Your name "
+              onChangeText={(newName) => this.setState({ name: newName })}
+            />
             <Text style={styles.backgroundTitle}>Choose Background Color:</Text>
             <View
               style={{
@@ -89,12 +93,12 @@ export default class Start extends Component {
             </View>
             <Pressable
               style={styles.chatBtn}
-              onPress={() =>
+              onPress={() => {
                 this.props.navigation.navigate("Chat", {
                   name: this.state.name,
                   bckClr: this.state.bckClr,
-                })
-              }
+                });
+              }}
             >
               <Text style={styles.chatTxt}>Start Chatting</Text>
             </Pressable>
