@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
   TouchableHighlight,
 } from "react-native";
-import { GiftedChat } from "react-native-gifted-chat";
 
 import BackgroundImage from "../assets/BackgroundImage.png";
 
@@ -19,7 +18,7 @@ export default class Start extends Component {
     super();
     this.state = {
       name: " ",
-      bckClr: "white",
+      bckClr: "#FFFFFF",
       borderRadius: 25,
       pressed: false,
       pressed2: false,
@@ -107,6 +106,13 @@ export default class Start extends Component {
     }
   };
 
+  startChat = () => {
+    this.props.navigation.navigate("Chat", {
+      name: this.state.name,
+      bckClr: this.state.bckClr,
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -191,12 +197,7 @@ export default class Start extends Component {
             </View>
             <TouchableHighlight
               style={styles.chatBtn}
-              onPress={() => {
-                this.props.navigation.navigate("Chat", {
-                  name: this.state.name,
-                  bckClr: this.state.bckClr,
-                });
-              }}
+              onPress={() => this.startChat()}
             >
               <Text style={styles.chatTxt}>Start Chatting</Text>
             </TouchableHighlight>

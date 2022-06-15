@@ -12,15 +12,10 @@ export default class Start extends Component {
   constructor() {
     super();
     this.state = {
-      textColor: "white",
       messages: [],
     };
   }
   componentDidMount() {
-    let { bckClr } = this.props.route.params;
-    if (bckClr === "white") {
-      this.setState({ textColor: "black" });
-    }
     this.setState({
       messages: [
         {
@@ -32,11 +27,16 @@ export default class Start extends Component {
             name: "React Native",
             avatar: "https://placeimg.com/140/140/any",
           },
-          sent: true,
-          received: true,
+        },
+        {
+          _id: 2,
+          text: "This is a system message",
+          createdAt: new Date(),
+          system: true,
         },
       ],
     });
+    this.props.navigation.setOptions({ title: this.props.route.params.name });
   }
 
   onSend(messages = []) {
@@ -47,8 +47,6 @@ export default class Start extends Component {
 
   render() {
     let { bckClr } = this.props.route.params;
-    let name = this.props.route.params.name;
-    this.props.navigation.setOptions({ title: name });
     return (
       <View
         style={{
