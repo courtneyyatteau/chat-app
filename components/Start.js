@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
     width: "88%",
     paddingTop: 50,
     alignItems: "center",
-    height: "44%",
+    height: "40%",
   },
   title: {
     fontSize: 45,
@@ -250,11 +250,12 @@ const styles = StyleSheet.create({
     paddingTop: "5%",
     paddingBottom: "5%",
     paddingRight: "5%",
+    marginBottom: 10
   },
   backgroundTitle: {
     fontSize: 16,
     marginTop: 10,
-
+    marginBottom: 10,
     fontWeight: "300",
     color: "#757083",
     width: "88%",
