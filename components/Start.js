@@ -13,6 +13,18 @@ import {
 import BackgroundImage from "../assets/BackgroundImage.png";
 
 export default class Start extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      bckClr: "",
+    };
+  }
+
+  changeBackgroundColor = (newClr) => {
+    this.setState({ bckClr: newClr });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -34,7 +46,7 @@ export default class Start extends Component {
                 width: "88%",
               }}
             >
-              <Pressable>
+              <Pressable onPress={() => this.changeBackgroundColor("#090C08")}>
                 <Text
                   style={{
                     backgroundColor: "#090C08",
@@ -44,7 +56,7 @@ export default class Start extends Component {
                   }}
                 ></Text>
               </Pressable>
-              <Pressable>
+              <Pressable onPress={() => this.changeBackgroundColor("#474056")}>
                 <Text
                   style={{
                     backgroundColor: "#474056",
@@ -54,7 +66,7 @@ export default class Start extends Component {
                   }}
                 ></Text>
               </Pressable>
-              <Pressable>
+              <Pressable onPress={() => this.changeBackgroundColor("#8A95A5")}>
                 <Text
                   style={{
                     backgroundColor: "#8A95A5",
@@ -64,7 +76,7 @@ export default class Start extends Component {
                   }}
                 ></Text>
               </Pressable>
-              <Pressable>
+              <Pressable onPress={() => this.changeBackgroundColor("#B9C6AE")}>
                 <Text
                   style={{
                     backgroundColor: "#B9C6AE",
@@ -75,7 +87,15 @@ export default class Start extends Component {
                 ></Text>
               </Pressable>
             </View>
-            <Pressable style={styles.chatBtn} onPress={() => this.props.navigation.navigate("Chat")}>
+            <Pressable
+              style={styles.chatBtn}
+              onPress={() =>
+                this.props.navigation.navigate("Chat", {
+                  name: this.state.name,
+                  bckClr: this.state.bckClr,
+                })
+              }
+            >
               <Text style={styles.chatTxt}>Start Chatting</Text>
             </Pressable>
             <View>

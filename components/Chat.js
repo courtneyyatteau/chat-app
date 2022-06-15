@@ -14,14 +14,11 @@ import BackgroundImage from "../assets/BackgroundImage.png";
 
 export default class Start extends Component {
   render() {
-    return <View style={styles.container}>
-      
-    </View>;
+    let { bckClr } = this.props.route.params;
+    return (
+      <View style={{ flex: 1, backgroundColor: bckClr }}>
+        <Text>TEST</Text>
+      </View>
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
