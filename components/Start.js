@@ -18,11 +18,90 @@ export default class Start extends Component {
     this.state = {
       name: "",
       bckClr: "",
+      borderRadius: "",
+      pressed: false,
+      pressed2: false,
+      pressed3: false,
+      pressed4: false,
+      borderClr: "white",
+      borderClr2: "white",
+      borderClr3: "white",
+      borderClr4: "white",
     };
   }
 
   changeBackgroundColor = (newClr) => {
     this.setState({ bckClr: newClr });
+  };
+
+  changeBorder1 = (newBorder) => {
+    if (!this.state.pressed) {
+      this.setState({ pressed: true });
+      this.setState({ borderClr: newBorder });
+      this.setState({ pressed2: false });
+      this.setState({ borderClr2: "white" });
+      this.setState({ pressed3: false });
+      this.setState({ borderClr3: "white" });
+      this.setState({ pressed4: false });
+      this.setState({ borderClr4: "white" });
+      this.changeBackgroundColor("#090C08");
+    }
+    if (this.state.pressed) {
+      this.setState({ pressed: false });
+      this.setState({ borderClr: "white" });
+      this.changeBackgroundColor("white");
+    }
+  };
+
+  changeBorder2 = (newBorder) => {
+    this.setState({ pressed2: true });
+    this.setState({ borderClr2: newBorder });
+    this.setState({ pressed: false });
+    this.setState({ borderClr: "white" });
+    this.setState({ pressed3: false });
+    this.setState({ borderClr3: "white" });
+    this.setState({ pressed4: false });
+    this.setState({ borderClr4: "white" });
+    this.changeBackgroundColor("#474056");
+    if (this.state.pressed2) {
+      this.setState({ pressed2: false });
+      this.setState({ borderClr2: "white" });
+      this.changeBackgroundColor("white");
+    }
+  };
+
+  changeBorder3 = (newBorder) => {
+    this.setState({ pressed3: true });
+    this.setState({ borderClr3: newBorder });
+    this.setState({ pressed: false });
+    this.setState({ borderClr: "white" });
+    this.setState({ pressed2: false });
+    this.setState({ borderClr2: "white" });
+    this.setState({ pressed4: false });
+    this.setState({ borderClr4: "white" });
+    this.changeBackgroundColor("#8A95A5");
+    if (this.state.pressed3) {
+      this.setState({ pressed3: false });
+      this.setState({ borderClr3: "white" });
+      this.changeBackgroundColor("white");
+    }
+  };
+
+  changeBorder4 = (newBorder) => {
+    this.setState({ pressed4: true });
+    this.setState({ borderClr4: newBorder });
+    this.setState({ pressed: false });
+    this.setState({ borderClr: "white" });
+    this.setState({ pressed3: false });
+    this.setState({ borderClr3: "white" });
+    this.setState({ pressed2: false });
+    this.setState({ borderClr2: "white" });
+    this.changeBackgroundColor("#B9C6AE");
+    if (this.state.pressed4) {
+      this.setState({ pressed4: false });
+      this.setState({ borderClr4: "white" });
+      this.changeBackgroundColor("white");
+    }
   };
 
   render() {
@@ -50,43 +129,59 @@ export default class Start extends Component {
                 width: "88%",
               }}
             >
-              <Pressable onPress={() => this.changeBackgroundColor("#090C08")}>
+              <Pressable
+                onPress={() => {
+                  this.changeBorder1("red");
+                }}
+              >
                 <Text
                   style={{
                     backgroundColor: "#090C08",
                     width: 50,
                     height: 50,
                     borderRadius: 25,
+                    borderColor: this.state.borderClr,
+                    borderWidth: 3,
                   }}
                 ></Text>
               </Pressable>
-              <Pressable onPress={() => this.changeBackgroundColor("#474056")}>
+              <Pressable
+                onPress={() => {
+                  this.changeBorder2("red");
+                }}
+              >
                 <Text
                   style={{
                     backgroundColor: "#474056",
                     width: 50,
                     height: 50,
                     borderRadius: 25,
+                    borderColor: this.state.borderClr2,
+                    borderWidth: 3,
                   }}
                 ></Text>
               </Pressable>
-              <Pressable onPress={() => this.changeBackgroundColor("#8A95A5")}>
+              <Pressable onPress={() => this.changeBorder3("red")}>
                 <Text
                   style={{
                     backgroundColor: "#8A95A5",
                     width: 50,
                     height: 50,
                     borderRadius: 25,
+                    borderColor: this.state.borderClr3,
+                    borderWidth: 3,
                   }}
                 ></Text>
               </Pressable>
-              <Pressable onPress={() => this.changeBackgroundColor("#B9C6AE")}>
+              <Pressable onPress={() => this.changeBorder4("red")}>
                 <Text
                   style={{
                     backgroundColor: "#B9C6AE",
                     width: 50,
                     height: 50,
                     borderRadius: 25,
+                    borderColor: this.state.borderClr4,
+                    borderWidth: 3,
                   }}
                 ></Text>
               </Pressable>
