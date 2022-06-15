@@ -14,7 +14,9 @@ import BackgroundImage from "../assets/BackgroundImage.png";
 
 export default class Start extends Component {
   render() {
-    return <View style={styles.container}></View>;
+    return <View style={styles.container}>
+      
+    </View>;
   }
 }
 

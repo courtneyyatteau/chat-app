@@ -17,7 +17,9 @@ export default class App extends Component {
       <NavigationContainer style={styles.container}>
         <Stack.Navigator
           initialRouteName="Start"
-          screenOptions={{ headerShown: false }}
+          screenOptions={{
+            headerStyle: { backgroundColor: "papayawhip", height: 32 },
+          }}
         >
           <Stack.Screen name="Start" component={Start} />
           <Stack.Screen name="Chat" component={Chat} />

@@ -75,10 +75,9 @@ export default class Start extends Component {
                 ></Text>
               </Pressable>
             </View>
-            <Pressable style={styles.chatBtn}>
+            <Pressable style={styles.chatBtn} onPress={() => this.props.navigation.navigate("Chat")}>
               <Text style={styles.chatTxt}>Start Chatting</Text>
             </Pressable>
-
             <View>
               <Pressable>
                 <Text></Text>
