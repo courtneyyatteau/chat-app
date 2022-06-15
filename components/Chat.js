@@ -6,7 +6,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from "react-native";
-import { GiftedChat } from "react-native-gifted-chat";
+import { GiftedChat, Bubble } from "react-native-gifted-chat";
 
 export default class Start extends Component {
   constructor() {
@@ -45,6 +45,28 @@ export default class Start extends Component {
     }));
   }
 
+  renderBubble(props) {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: "#9F2B68",
+            padding: 5,
+            borderTopRightRadius: 10,
+            borderTopLeftRadius: 10,
+            borderBottomLeftRadius: 10,
+            borderBottomRightRadius: 10,
+          },
+          left: {
+            backgroundColor: "lightblue",
+            padding: 5,
+          },
+        }}
+      />
+    );
+  }
+
   render() {
     let { bckClr } = this.props.route.params;
     return (
@@ -62,6 +84,7 @@ export default class Start extends Component {
           }}
           isTyping={true}
           alwaysShowSend={true}
+          renderBubble={this.renderBubble.bind(this)}
         />
         {Platform.OS === "android" ? (
           <KeyboardAvoidingView behavior="height" />
