@@ -135,10 +135,11 @@ export default class Start extends Component {
           onSend={(messages) => this.onSend(messages)}
           user={{
             _id: 1,
+            avatar: "https://placeimg.com/140/140/any",
           }}
-          isTyping={true}
-          alwaysShowSend={true}
           renderBubble={this.renderBubble.bind(this)}
+          showUserAvatar={true}
+          showAvatarForEveryMessage={true}
         />
         {Platform.OS === "android" ? (
           <KeyboardAvoidingView behavior="height" />
