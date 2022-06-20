@@ -15,12 +15,8 @@ export default class Start extends Component {
   constructor() {
     super();
     this.state = {
+      uid: 0,
       messages: [], //array of messages to be stored
-      user: {
-        _id: "",
-        name: "",
-        avatar: "",
-      },
     };
     if (!firebase.apps.length) {
       firebase.initializeApp({
@@ -33,28 +29,43 @@ export default class Start extends Component {
         measurementId: "G-JHR6HGP84G",
       });
     }
+    this.referenceChatMessages = null;
   }
   componentDidMount() {
-    let { name } = this.props.route.params;
-    this.setState({
-      messages: [],
+    this.referenceChatMessages = firebase.firestore().collection("messages");
+    this.authUnsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        firebase.auth().signInAnonymously();
+      }
+      this.setState({
+        uid: user.uid,
+        messages: [],
+        user: {
+          _id: user.uid,
+          avatar: "https://placeimg.com/140/140/any",
+        },
+      });
+      this.referenceMessagesUser = firebase
+        .firestore()
+        .collection("messages")
+        .where("uid", "==", this.state.uid);
+      this.unsubscribeListUser = this.referenceMessagesUser
+        .orderBy("createdAt", "desc")
+        .onSnapshot(this.onCollectionUpdate);
     });
     this.props.navigation.setOptions({ title: this.props.route.params.name }); //sets name at top of navigation
-    this.referenceChatMessages = firebase.firestore().collection("messages");
-    this.unsubscribe = this.referenceChatMessages
-      .orderBy("createdAt", "desc")
-      .onSnapshot(this.onCollectionUpdate);
   }
 
   componentWillUnmount() {
-    this.unsubscribe();
+    this.authUnsubscribe();
   }
 
   addMessages() {
     const message = this.state.messages[0];
     this.referenceChatMessages.add({
+      uid: this.state.uid,
       _id: message._id,
-      text: message.text || "",
+      text: message.text,
       createdAt: message.createdAt,
       user: message.user,
     });
