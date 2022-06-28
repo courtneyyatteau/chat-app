@@ -19,6 +19,7 @@ export default class Start extends Component {
     this.state = {
       uid: 0,
       messages: [], //array of messages to be stored
+      isConnected: false,
     };
     if (!firebase.apps.length) {
       firebase.initializeApp({
@@ -36,7 +37,7 @@ export default class Start extends Component {
   componentDidMount() {
     NetInfo.fetch().then((connection) => {
       if (connection.isConnected) {
-        console.log("online");
+        this.setState({ isConnected: true });
       } else {
         console.log("offline");
       }
