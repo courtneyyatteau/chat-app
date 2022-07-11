@@ -51,7 +51,6 @@ export default function CustomActions(props) {
       }
     }
   };
-
   const uploadImage = async (uri) => {
     const blob = await new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
