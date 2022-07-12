@@ -23,7 +23,7 @@ React Native, Expo, Google Firestore/Firebase
 * React Navigation Library `npm install --save react-navigation`
     * React Navigation Stack `npm install @react-navigation/native @react-navigation/stack`
     * More React Navigation Dependencies `expo install react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view`
-* Firestone (via Firebase) `npm install --save firebase@7.9.0`
+* Firestone (via Firebase) `npm install --save firebase`
 * React Native AsyncStorage `expo install @react-native-community/async-storage`
 * React Native NetInfo `expo install @react-native-community/netinfo`
 * Expo's ImagePicker `expo install expo-image-picker`
