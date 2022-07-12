@@ -11,3 +11,15 @@ This chat application was created using React Native for mobile devices. The app
 
 ## Technologies Used
 React Native, Expo, Google Firestore/Firebase
+
+## Development Setup
+* Install expo-cli using `npm install expo-cli --global`.
+* After cloning the repository, install all necessary dependencies listed below.
+* Launch app from the root folder using `expo start` or `npm start`.
+* To see the application, you'll need to use the Expo app for your phone or install an emulator.
+
+### Dependencies to Install
+
+## Configuration of Database
+This application can be used through your own Firebase database account. To do so you'll need to create a new project in Google Firebase. After registering your new project, be sure to copy your conents of `firebaseConfig` in the `Chat.js` file.
+

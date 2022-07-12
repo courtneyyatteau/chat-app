@@ -22,7 +22,6 @@ export default class Chat extends React.Component {
       user: {
         _id: "",
         name: "",
-        avatar: "",
       },
       isConnected: false,
       image: null,
@@ -91,23 +90,24 @@ export default class Chat extends React.Component {
     this.authUnsubscribe();
   }
 
-  renderInputToolbar(props) {
-    if (this.state.isConnected == false) {
-    } else {
-      return <InputToolbar {...props} />;
-    }
-  }
-
-  getMessages = async () => {
-    let messages = "";
-    try {
-      messages = (await AsyncStorage.getItem("messages")) || [];
-      this.setState({
-        messages: JSON.parse(messages),
+  onCollectionUpdate = (querySnapshot) => {
+    const messages = [];
+    // go through each document
+    querySnapshot.forEach((doc) => {
+      // get the QueryDocumentSnapshot's data
+      let data = doc.data();
+      messages.push({
+        _id: data._id,
+        text: data.text,
+        createdAt: data.createdAt.toDate(),
+        user: data.user,
+        image: data.image || null,
+        location: data.location || null,
       });
-    } catch (error) {
-      console.log(error.message);
-    }
+    });
+    this.setState({
+      messages: messages,
+    });
   };
 
   addMessage() {
@@ -124,18 +124,7 @@ export default class Chat extends React.Component {
     });
   }
 
-  onSend(messages = []) {
-    this.setState(
-      (previousState) => ({
-        messages: GiftedChat.append(previousState.messages, messages),
-      }),
-      () => {
-        this.addMessage();
-        this.saveMessage();
-      }
-    );
-  }
-
+  //Save to to async storage
   async saveMessage() {
     try {
       await AsyncStorage.setItem(
@@ -147,40 +136,29 @@ export default class Chat extends React.Component {
     }
   }
 
-  async deleteMessages() {
+  //Retrieve from async storage
+  getMessages = async () => {
+    let messages = "";
     try {
-      await AsyncStorage.removeItem("messages");
+      messages = (await AsyncStorage.getItem("messages")) || [];
       this.setState({
-        messages: [],
+        messages: JSON.parse(messages),
       });
     } catch (error) {
       console.log(error.message);
     }
-  }
-
-  onCollectionUpdate = (querySnapshot) => {
-    const messages = [];
-    querySnapshot.forEach((doc) => {
-      let data = doc.data();
-      messages.push({
-        _id: data._id,
-        text: data.text,
-        createdAt: data.createdAt.toDate(),
-        user: data.user,
-        image: data.image || null,
-        location: data.location || null,
-      });
-    });
-    this.setState({
-      messages: messages,
-    });
   };
 
-  renderInputToolbar(props) {
-    if (this.state.isConnected == false) {
-    } else {
-      return <InputToolbar {...props} />;
-    }
+  onSend(messages = []) {
+    this.setState(
+      (previousState) => ({
+        messages: GiftedChat.append(previousState.messages, messages),
+      }),
+      () => {
+        this.addMessage();
+        this.saveMessage();
+      }
+    );
   }
 
   renderBubble(props) {
@@ -213,6 +191,14 @@ export default class Chat extends React.Component {
         }}
       />
     );
+  }
+
+  renderInputToolbar(props) {
+    if (this.state.isConnected == false) {
+      //render nothing if offline
+    } else {
+      return <InputToolbar {...props} />;
+    }
   }
 
   renderCustomActions = (props) => {
@@ -255,8 +241,7 @@ export default class Chat extends React.Component {
           messages={this.state.messages}
           onSend={(messages) => this.onSend(messages)}
           user={{
-            _id: 1,
-            avatar: "https://placeimg.com/140/140/any",
+            _id: this.state.user._id,
           }}
           renderBubble={this.renderBubble.bind(this)}
           renderInputToolbar={this.renderInputToolbar.bind(this)}
