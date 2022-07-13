@@ -133,7 +133,7 @@ export default class Start extends Component {
               onChangeText={(newName) => this.setState({ name: newName })} //updates state of name based on user-input
               ccessible={true}
               accessibilityLabel="Your Name"
-              accessibilityHint="Type the name you wish to use during the chat session."
+              accessibilityHint="Type the name you want to use during the chat session."
             />
             <Text style={styles.backgroundTitle}>Choose Background Color:</Text>
             <View

@@ -43,20 +43,18 @@ export default class Chat extends React.Component {
   }
 
   componentDidMount() {
-    // Takes the state of 'name' that was passed as a prop to <Chat /> and uses the prop sets it to the title of the screen
     let name = this.props.route.params.name;
-    this.props.navigation.setOptions({ title: name });
+    this.props.navigation.setOptions({ title: name }); //sets name at top of chat
 
-    //Tell app where to find the messages
     this.referenceChatMessages = firebase.firestore().collection("messages");
 
-    //Check if user is online
+    //Checks if the user is online
     NetInfo.fetch().then((connection) => {
       if (connection.isConnected) {
         this.setState({ isConnected: true });
         console.log("online");
 
-        //Authenticate user
+        //Authenticate the user
         this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
           if (!user) {
             firebase.auth().signInAnonymously();
@@ -92,9 +90,7 @@ export default class Chat extends React.Component {
 
   onCollectionUpdate = (querySnapshot) => {
     const messages = [];
-    // go through each document
     querySnapshot.forEach((doc) => {
-      // get the QueryDocumentSnapshot's data
       let data = doc.data();
       messages.push({
         _id: data._id,
@@ -124,7 +120,6 @@ export default class Chat extends React.Component {
     });
   }
 
-  //Save to to async storage
   async saveMessage() {
     try {
       await AsyncStorage.setItem(
@@ -136,7 +131,7 @@ export default class Chat extends React.Component {
     }
   }
 
-  //Retrieve from async storage
+  //Retrieves messages from storage
   getMessages = async () => {
     let messages = "";
     try {

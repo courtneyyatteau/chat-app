@@ -5,10 +5,13 @@ import Start from "./components/Start";
 import CustomActions from "./CustomActions";
 // import react native gesture handler
 import "react-native-gesture-handler";
+import { LogBox } from "react-native";
 
 // import react Navigation
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+
+LogBox.ignoreLogs(["AsyncStorage has been extracted from react-native core"]);
 
 const Stack = createStackNavigator();
 
@@ -19,7 +22,7 @@ export default class App extends Component {
         <Stack.Navigator
           initialRouteName="Start"
           screenOptions={{
-            headerStyle: { backgroundColor: "papayawhip", height: 65 },
+            headerStyle: { backgroundColor: "papayawhip", height: 90 },
           }}
         >
           <Stack.Screen
